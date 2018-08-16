@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <payment>
+            <synchronypayment>
+                <!--<payment_action>capture</payment_action>--><!-- You can use another methor like capture  -->
+                <model>Hp\SynchronyPayment\Model\SynchronyPaymentMethod</model>
+                <active>1</active>
+                <title>Synchrony Financial Payment</title>
+                <order_status>pending</order_status><!-- set default order status-->
+                <group>Offline</group>
+            </synchronypayment>
+        </payment>
+    </default>
+</config>
