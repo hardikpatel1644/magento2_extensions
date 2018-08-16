@@ -1,0 +1,52 @@
+
+<?php
+$quote = $block->getCheckoutSession()->getQuote();
+$items = $quote->getAllItems();
+
+
+/* foreach ($items as $item) {
+  echo 'ID: ' . $item->getProductId() . '<br />';
+  echo 'Name: ' . $item->getName() . '<br />';
+  echo 'Sku: ' . $item->getSku() . '<br />';
+  echo 'Quantity: ' . $item->getQty() . '<br />';
+  echo 'Price: ' . $item->getPrice() . '<br />';
+  echo "<br />";
+  } */
+
+// Get total items and total quantity in cart
+
+$totalItems = $quote->getItemsCount();
+$totalQuantity = $quote->getItemsQty();
+
+//Get subtotal and grand total price of cart
+
+$subTotal = $quote->getSubtotal();
+$grandTotal = $quote->getGrandTotal();
+
+$snOrgPrice = $grandTotal * 52;
+$snDownPayment = round(($snOrgPrice * 0.15), 2);
+
+//Get billing and shipping addresses
+
+/* $billingAddress = $quote->getBillingAddress();
+  $shippingAddress = $quote->getShippingAddress();
+ */
+?>
+
+
+
+
+<div  class="cart-totals" >
+    <div class="table-wrapper" >
+        <table class="data table totals">
+            <tr class="grand totals">
+                <th class="mark">
+                    <strong>Down Payment</strong>
+                </th>
+                <td class="amount">
+                    <strong><span>$<?php echo $snDownPayment; ?></span></strong>
+                </td>
+            </tr>     
+        </table>
+    </div>
+</div>
