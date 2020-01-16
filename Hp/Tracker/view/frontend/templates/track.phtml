@@ -1,0 +1,31 @@
+<div class="block block-dashboard-info">
+	<div class="block-content">
+		<div class="box box-information" style="width:100%;float:left;">
+			<!--<strong class="box-title">
+				<span><h6>Tracking number</h6></span>
+			</strong> -->
+			<div class="box-content">
+				<form action="<?php echo $block->getFormAction(); ?>" method="post">
+					<div class="control col-md-12">
+						<label class="label" for="shipper"><span>Shipped By</span></label>
+						<input name="shipper" type="radio"  value="canada_post"  class="input-radio" checked="checked">Canada POST
+						<input name="shipper" type="radio"  value="canpar"  class="input-radio" >Canpar
+					</div>
+					<br/>
+
+					<div class="control col-md-12">
+						<label class="label" for="TRACKNUM"><span>Tracking number</span></label>
+						<input name="TRACKNUM" type="text"  maxlength="16"  class="input-text">
+					</div>
+					<br/>
+					<br/>
+					<div class="control col-md-12">
+						<input type="submit" value="Track" class="action create primary">
+					</div>
+					<br/>
+					<hr>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,311 @@
+<?php
+
+$asTrackingInfo = $block->getTrackingInfoData();
+
+
+
+$asTrackingDetails = $asTrackingInfo['tracking_details'];
+
+$asTrackingSummary = $asTrackingInfo['tracking_summary'];
+
+$asEvents = $asTrackingDetails['significant-events']['occurrence'];
+
+
+
+
+
+
+
+/**
+
+* Function to conver date
+
+*/
+
+function cp_date_format($ssDate,$ssFormat = 'M. d')
+
+{
+
+	$date = date_create($ssDate);
+
+	return date_format($date, $ssFormat);
+
+}
+
+
+
+
+
+function get_percentage_from_dates($date1,$date2)
+
+{
+
+	$today = strtotime(date('Y/m/d'));
+
+	$date1 = strtotime(cp_date_format($date1,'Y/m/d'));
+
+	$date2 = strtotime(cp_date_format($date2,'Y/m/d'));
+
+
+
+	$perentage = 0;
+
+	if ($today < $date1)
+
+	{
+
+		return $perentage = 0;
+
+	}
+
+	else if ($today > $date2)
+
+	{
+
+		return $percentage = 100;
+
+	}
+	else if($today == $date2)
+	{
+		return $percentage = 100;
+	}
+
+	else
+
+	{
+
+		return $percentage = ($date2 - $today) * 100 / ($date2 - $date1);
+
+	}
+
+
+
+	return  $perentage;
+
+}
+
+
+
+?>
+
+
+
+
+
+<hr>
+
+<button type="button" title="Track Another Item" class="action create primary" onclick="document.location.href='/track-details/track'">
+
+            <span>Track Another Item</span>
+
+</button>
+
+<hr>
+
+<div class="block block-dashboard-info">
+
+	<?php if(is_array($asTrackingDetails) && count($asTrackingDetails) > 0  && is_array($asTrackingSummary) && count($asTrackingSummary)> 0):?>
+
+		<div class="block-content">
+
+			<div class="box box-information" style="width:49%;float:left;">
+
+				<strong class="box-title">
+
+					<span><h3>Delivery Details</h3></span>
+
+				</strong>
+
+				<div class="box-content">
+
+					<p><strong>Shipping service : </strong> <?php /* @escapeNotVerified */  echo $asTrackingDetails['service-name'];?></p>
+
+					<?php if(is_array($asTrackingDetails['delivery-options']) && count($asTrackingDetails['delivery-options']) > 0 ):?>
+
+						<?php if(isset($asTrackingDetails['delivery-options']['item']['delivery-option-description'])): ?>
+							<p><strong>Features and options : </strong> <?php /* @escapeNotVerified */  echo $asTrackingDetails['delivery-options']['item']['delivery-option-description'];?></p>
+						<?php endif;?>
+					<?php endif;?>
+
+					<p><strong>Tracking number : </strong> <?php /* @escapeNotVerified */  echo $asTrackingDetails['pin'];?></p>
+
+					<p><strong>Delivery standard : </strong> <?php /* @escapeNotVerified */  echo cp_date_format($asTrackingDetails['expected-delivery-date']);?></p>
+
+					<p><strong>Delivery status : </strong><?php /* @escapeNotVerified */  echo $asTrackingSummary['pin-summary']['event-description'];?></p>
+
+				</div>
+
+			</div>
+
+			<div class="box box-newsletter" style="width:49%;float:left;">
+
+				<strong class="box-title">
+
+					<span><h3>Tracking progress</h3></span>
+
+				</strong>
+
+				<div class="box-content">
+
+					<div class="origin-from">Origin <br>Calgary, AB</div>
+
+					<div class="w3-light-grey">
+
+						<?php  $perentage =  get_percentage_from_dates($asTrackingSummary['pin-summary']['mailed-on-date'],$asTrackingSummary['pin-summary']['expected-delivery-date'])?>
+
+						<div class="w3-container w3-green w3-center" style="background-color: <?php echo $perentage == 100 ? "#4CAF50":"#0467ca";?> !important;width:<?php /* @escapeNotVerified */ echo $perentage;?>%"><?php  /* @escapeNotVerified */ echo ($perentage < 100 ) ? "In Transit  -  ".date('M. d') : $asTrackingSummary['pin-summary']['event-description'] ;?></div>
+
+					</div>
+
+					<div class="status-progress">
+
+						<div class="received-by">Received by Canada Post<br><?php /* @escapeNotVerified */  echo cp_date_format($asTrackingSummary['pin-summary']['mailed-on-date']);?> </div>
+
+
+
+						<?php
+
+						$expected_date = (is_string($asTrackingSummary['pin-summary']['attempted-date'])) ? $asTrackingSummary['pin-summary']['attempted-date'] : $asTrackingSummary['pin-summary']['expected-delivery-date'] ;
+
+						$expected_desc = ($asTrackingSummary['pin-summary']['event-type'] == "DELIVERED"  ? $asTrackingSummary['pin-summary']['event-description']  : "Expected delivery" );
+
+						?>
+
+						<div class="delivery-status"><?php /* @escapeNotVerified */  echo $expected_desc;?> <br><?php /* @escapeNotVerified */  echo cp_date_format($expected_date);?></div>
+
+					</div>
+
+				</div>
+
+
+
+			</div>
+
+		</div>
+
+
+
+		<div class="block block-dashboard-orders" style="width:100%;float:left;margin-top:50px;">
+
+			<div class="block-title order">
+
+				<strong><h3>Delivery progress</h3></strong>
+
+			</div>
+
+			<div class="block-content">
+
+				<div class="table-wrapper orders-recent">
+
+
+
+					<table class="table" >
+
+						<caption class="table-caption">Delivery progress</caption>
+
+						<thead>
+
+							<tr>
+
+								<th class="col Date">Date</th>
+
+								<th class="col Time">Time</th>
+
+								<th class="col Progress">Progress</th>
+
+							</tr>
+
+						</thead>
+
+						<tbody>
+
+							<?php  foreach ($asEvents as $key=>$asOccurrence):?>
+
+								<tr>
+
+									<td  class="col id"><?php
+
+
+
+										/* @escapeNotVerified */ echo cp_date_format($asOccurrence['event-date']);
+
+									?></td>
+
+									<td  class="col shipping"><?php /* @escapeNotVerified */ echo $asOccurrence['event-time'];?></td>
+
+									<td  class="col total">
+
+										<?php /* @escapeNotVerified */ echo $asOccurrence['event-description'];?></br>
+
+										<?php
+
+										if(is_string($asOccurrence['event-site']) &&  is_string($asOccurrence['event-province'])):
+
+											/* @escapeNotVerified */ echo $asOccurrence['event-site'].", ".$asOccurrence['event-province'];
+
+										endif;
+
+										?>
+
+									</td>
+
+								</tr>
+
+							<?php endforeach;?>
+
+						</tbody>
+
+					</table>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+	<?php else:?>
+
+			<div class="message-error error message" data-ui-id="message-error">
+
+            	<div>Tracking information not found. Please contact our customer service department.</div>
+
+        	</div>
+
+			<a href="/track-details/track" class="action create primary">Track another item</a>
+
+	<?php endif;?>
+
+</div>
+
+<style>
+
+.w3-green, .w3-hover-green:hover {
+
+	color: #fff!important;
+
+	background-color: #4CAF50!important;
+
+	}.w3-center {
+
+		text-align: center!important;
+
+		}.w3-container, .w3-panel {
+
+			padding: 0.01em 16px;
+
+			}.w3-light-grey, .w3-hover-light-grey:hover, .w3-light-gray, .w3-hover-light-gray:hover {
+
+				color: #000!important;
+
+				background-color: #f1f1f1!important;
+
+			}
+
+			.delivery-status{float:right;}
+
+			.received-by{float: left;}
+
+			</style>
+

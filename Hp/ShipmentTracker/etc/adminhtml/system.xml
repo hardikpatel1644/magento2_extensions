@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Hp
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * Hp ShipmentTracker
+ *
+ * @category Hp
+ * @package Hp_ShipmentTracker
+ *
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @author Hardik Patel <hpca1644@gmail.com>
+ *
+ */
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+<system>
+        <section id="carriers">
+            <group id="hptracker1" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+                <!-- <comment>
+                    <![CDATA[
+				<div style="padding:10px;background-color:#fff;border:1px solid #ddd;margin-bottom:7px;">
+
+          View Hp Generic ShipmentTracker <a href="http://wiki.webshopapps.com/extensions/generic-tracker" target="_blank">Documentation</a>
+	  <br/>Download latest <a href="http://www.webshopapps.com/csv/TrackingNumbers.pdf" target="_blank">Tracking URLs</a>
+		  				</div>
+		  			  ]]>
+                </comment> -->
+                <label>Hp ShipmentTracker</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Tracking Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="preurl" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pre-Configured Tracking URL</label>
+                    <comment>Select from known Pre-Configured URL's for sandbox or production</comment>
+                    <source_model>Hp\ShipmentTracker\Model\Config\Source\Preurl</source_model>
+                </field>
+                <field id="url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Manual Tracking URL</label>
+                    <comment>Enter Manual Tracking URL. Must include #TRACKNUM#</comment>
+                </field>
+                <field id="username" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Username</label>
+                    <comment>Enter username for sandbox or production</comment>
+                </field>
+                <field id="password" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Password</label>
+                    <comment>Enter password for sandbox or production</comment>
+                </field>
+                <field id="customer_no" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer No</label>
+                </field>
+                <field id="canadapost_sandbox_details_url" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Canada post sandbox details URL</label>
+                    <comment>Enter canadapost sandbox details url</comment>
+                </field>
+                <field id="canadapost_production_details_url" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Canada post production details URL</label>
+                    <comment>Enter canadapost production details url</comment>
+                </field>
+                <field id="canadapost_sandbox_summary_url" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Canada post sandbox summary URL</label>
+                    <comment>Enter canadapost sandbox summary url</comment>
+                </field>
+                <field id="canadapost_production_summary_url" translate="label" type="text" sortOrder="101" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Canada post production summary URL</label>
+                    <comment>Enter canadapost production summary url</comment>
+                </field>
+                <field id="sandbox" translate="label" type="select" sortOrder="102" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sandbox</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+
+            </group>
+
+            <group id="hptracker2" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Canpar Shipping Tracker</label>
+               <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                   <label>Tracking Enabled</label>
+                   <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               </field>
+               <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Title</label>
+               </field>
+               <field id="email" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Email</label>
+                   <comment>Enter Email for sandbox or production</comment>
+               </field>
+               <field id="password" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Password</label>
+                   <comment>Enter password for sandbox or production</comment>
+               </field>
+               <field id="shipping_account_no" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Shipping Account Number</label>
+                   <comment>Enter Shipping Account number for sandbox or production</comment>
+               </field>
+
+               <field id="preurl" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Pre-Configured Tracking URL</label>
+                   <comment>Select from known Pre-Configured URL's</comment>
+                   <source_model>Hp\ShipmentTracker\Model\Config\Source\Preurl</source_model>
+               </field>
+               <field id="url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Manual Tracking URL</label>
+                   <comment>Enter Manual Tracking URL. Must include #TRACKNUM#</comment>
+               </field>
+               <field id="sandbox" translate="label" type="select" sortOrder="102" showInDefault="1" showInWebsite="1" showInStore="0">
+                   <label>Sandbox</label>
+                   <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               </field>
+           </group>
+            <!-- <group id="hptracker2" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+                <comment>
+                    <![CDATA[
+				<div style="padding:10px;background-color:#fff;border:1px solid #ddd;margin-bottom:7px;">
+
+          View Hp Generic ShipmentTracker <a href="http://wiki.webshopapps.com/extensions/generic-tracker" target="_blank">Documentation</a>
+	  <br/>Download latest <a href="http://www.webshopapps.com/csv/TrackingNumbers.pdf" target="_blank">Tracking URLs</a>
+		  				</div>
+		  			  ]]>
+                </comment>
+                <label>Hp ShipmentTracker 2</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Tracking Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="preurl" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pre-Configured Tracking URL</label>
+                    <comment>Select from known Pre-Configured URL's</comment>
+                    <source_model>Hp\ShipmentTracker\Model\Config\Source\Preurl</source_model>
+                </field>
+                <field id="url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Manual Tracking URL</label>
+                    <comment>Enter Manual Tracking URL. Must include #TRACKNUM#</comment>
+                </field>
+            </group>
+            <group id="hptracker3" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+                <comment>
+                    <![CDATA[
+				<div style="padding:10px;background-color:#fff;border:1px solid #ddd;margin-bottom:7px;">
+
+          View Hp Generic ShipmentTracker <a href="http://wiki.webshopapps.com/extensions/generic-tracker" target="_blank">Documentation</a>
+	  <br/>Download latest <a href="http://www.webshopapps.com/csv/TrackingNumbers.pdf" target="_blank">Tracking URLs</a>
+		  				</div>
+		  			  ]]>
+                </comment>
+                <label>Hp ShipmentTracker 3</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Tracking Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="preurl" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pre-Configured Tracking URL</label>
+                    <comment>Select from known Pre-Configured URL's</comment>
+                    <source_model>Hp\ShipmentTracker\Model\Config\Source\Preurl</source_model>
+                </field>
+                <field id="url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Manual Tracking URL</label>
+                    <comment>Enter Manual Tracking URL. Must include #TRACKNUM#</comment>
+                </field>
+            </group>
+            <group id="hptracker4" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+                <comment>
+                    <![CDATA[
+				<div style="padding:10px;background-color:#fff;border:1px solid #ddd;margin-bottom:7px;">
+
+          View Hp Generic ShipmentTracker <a href="http://wiki.webshopapps.com/extensions/generic-tracker" target="_blank">Documentation</a>
+	  <br/>Download latest <a href="http://www.webshopapps.com/csv/TrackingNumbers.pdf" target="_blank">Tracking URLs</a>
+		  				</div>
+		  			  ]]>
+                </comment>
+                <label>Hp ShipmentTracker 4</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Tracking Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="preurl" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pre-Configured Tracking URL</label>
+                    <comment>Select from known Pre-Configured URL's</comment>
+                    <source_model>Hp\ShipmentTracker\Model\Config\Source\Preurl</source_model>
+                </field>
+                <field id="url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Manual Tracking URL</label>
+                    <comment>Enter Manual Tracking URL. Must include #TRACKNUM#</comment>
+                </field>
+            </group>
+            <group id="hptracker5" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+                <comment>
+                    <![CDATA[
+				<div style="padding:10px;background-color:#fff;border:1px solid #ddd;margin-bottom:7px;">
+
+          View Hp Generic ShipmentTracker <a href="http://wiki.webshopapps.com/extensions/generic-tracker" target="_blank">Documentation</a>
+	  <br/>Download latest <a href="http://www.webshopapps.com/csv/TrackingNumbers.pdf" target="_blank">Tracking URLs</a>
+		  				</div>
+		  			  ]]>
+                </comment>
+                <label>Hp ShipmentTracker 5</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Tracking Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="preurl" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pre-Configured Tracking URL</label>
+                    <comment>Select from known Pre-Configured URL's</comment>
+                    <source_model>Hp\ShipmentTracker\Model\Config\Source\Preurl</source_model>
+                </field>
+                <field id="url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Manual Tracking URL</label>
+                    <comment>Enter Manual Tracking URL. Must include #TRACKNUM#</comment>
+                </field>
+            </group> -->
+        </section>
+    </system>
+</config>
